@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Language</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #10131d;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 24px 10px;
+}
+
+header h1 {
+  color: #d8b4fe;
+  font-size: 30px;
+}
+
+header p {
+  color: #aaa;
+}
+
+main {
+  max-width: 550px;
+  margin: auto;
+}
+
+.card {
+  background: #1c2130;
+  border: 1px solid #343b50;
+  border-radius: 18px;
+  padding: 20px;
+  margin: 18px 0;
+}
+
+h2 {
+  color: #d8b4fe;
+  font-size: 20px;
+}
+
+label {
+  display: block;
+  margin: 18px 0 8px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #414b64;
+  background: #111725;
+  color: white;
+  font-size: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border: 0;
+  border-radius: 12px;
+  background: #9364d9;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+video {
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 12px;
+}
+
+.note {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#status {
+  color: #d8b4fe;
+  line-height: 1.8;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  padding: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Family Language</h1>
+  <p>لغتك، عالمك، بلغتك المفضلة ❤️</p>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>🎬 اختاري الفيديو</h2>
+
+  <input
+    type="file"
+    id="videoFile"
+    accept="video/*"
+  >
+
+  <video id="preview" controls hidden></video>
+
+  <p class="note">
+    اختاري فيديو من جهازك لمعاينته.
+  </p>
+</section>
+
+<section class="card">
+
+  <h2>🌍 إعدادات اللغة</h2>
+
+  <label>لغة الفيديو الأصلية</label>
+
+  <select id="source">
+    <option value="auto">اكتشاف تلقائي</option>
+    <option value="en">الإنجليزية</option>
+    <option value="tr">التركية</option>
+    <option value="ko">الكورية</option>
+    <option value="zh">الصينية</option>
+    <option value="ar">العربية</option>
+    <option value="ja">اليابانية</option>
+  </select>
+
+  <label>لغة الترجمة والدبلجة</label>
+
+  <select id="target">
+    <option value="ar">العربية</option>
+    <option value="en">الإنجليزية</option>
+    <option value="tr">التركية</option>
+    <option value="ko">الكورية</option>
+    <option value="zh">الصينية</option>
+    <option value="fr">الفرنسية</option>
+    <option value="es">الإسبانية</option>
+  </select>
+
+  <label>نوع الصوت</label>
+
+  <select id="voice">
+    <option>صوت نسائي</option>
+    <option>صوت رجالي</option>
+    <option>حسب المتحدث الأصلي</option>
+  </select>
+
+</section>
+
+<section class="card">
+
+  <h2>🎙️ تجهيز الدبلجة</h2>
+
+  <button id="start">
+    ابدئي معالجة الفيديو
+  </button>
+
+  <p id="status">
+    بانتظار اختيار الفيديو واللغة.
+  </p>
+
+  <p class="note">
+    تحتاج المعالجة الفعلية إلى ربط خادم
+    الترجمة والتعرف على الكلام وتوليد الأصوات.
+  </p>
+
+</section>
+
+</main>
+
+<footer>
+  Family Language © 2026
+</footer>
+
+<script>
+
+const file = document.getElementById("videoFile");
+const preview = document.getElementById("preview");
+const status = document.getElementById("status");
+
+file.addEventListener("change", () => {
+
+  if (!file.files.length) return;
+
+  preview.src = URL.createObjectURL(file.files[0]);
+  preview.hidden = false;
+
+  status.textContent = "تم اختيار الفيديو بنجاح ❤️";
+
+});
+
+document.getElementById("start").addEventListener("click", () => {
+
+  if (!file.files.length) {
+
+    status.textContent = "اختاري فيديو أولاً.";
+
+    return;
+  }
+
+  status.textContent =
+    "تم تجهيز الفيديو والإعدادات. نحتاج الآن ربط خادم المعالجة لتفعيل الترجمة والدبلجة الحقيقية.";
+
+});
+
+</script>
+
+</body>
+</html>
